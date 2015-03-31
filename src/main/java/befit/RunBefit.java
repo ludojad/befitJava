@@ -12,12 +12,12 @@ public class RunBefit {
         try {
             befit.setUp();
             befit.testCase();
-        } catch (NumberFormatException e) {
-            log.warn("Traing day not found, nothing to sign...");
-        } catch (Exception e) {
-            log.error("Exception: ", e);
-        } finally {
             befit.tearDown();
+        } catch (IllegalArgumentException e) {
+            log.warn("Nothing to sign today");
+        }
+        catch (Exception e) {
+            log.error("Exception: ", e);
         }
     }
 }

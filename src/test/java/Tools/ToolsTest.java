@@ -13,7 +13,7 @@ public class ToolsTest {
 
     @Test
     public void testGiveDayOdWeekNumberShouldBeInRange() {
-        Assert.assertThat("Grater than 0", Tools.getNowDayofWeekNumber(), greaterThan(0));
-        Assert.assertThat("Lower than 7", Tools.getNowDayofWeekNumber(), lessThan(7));
+        Assert.assertThat("Grater than 0", Tools.getNowDayOfWeekNumber(), greaterThan(0));
+        Assert.assertThat("Lower than 7", Tools.getNowDayOfWeekNumber(), lessThan(7));
     }
 }
