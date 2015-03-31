@@ -7,6 +7,7 @@ import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 /**
@@ -28,12 +29,15 @@ public class AppPropertiesTest {
     public void givenPasswordShouldNotBeNull () throws Exception {
         String password = AppProperties.get("password");
         Assert.assertThat("Password should not be null value", password, notNullValue());
+        Assert.assertThat("Password should not be empty value", password, not(""));
     }
 
     @Test
     public void givenPatternShouldNotBeNull () throws Exception {
         String pattern = AppProperties.get("pattern");
         Assert.assertThat("Password should not be null value", pattern, notNullValue());
+        Assert.assertThat("Password should not be empty value", pattern, not(""));
+
     }
 
     @Test

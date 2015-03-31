@@ -14,24 +14,31 @@ import java.io.IOException;
 public class Main {
     final static Logger log = Logger.getLogger(Main.class);
     public static void main(String[] args) throws Exception {
+
         PropertyConfigurator.configure("log4j.properties");
+
         log.info("BEFIT SCHEDULER START");
 
         Scheduler s = new Scheduler();
         s.schedule(Tools.getPattern(), new Runnable() {
             public void run() {
-                RunBefit.run();
+                try {
+                    RunBefit.run();
+                } catch (Exception e) {
+                    log.error(e);
+                }
             }
         });
 
-        s.start();
-            try {
-                Thread.sleep(Long.MAX_VALUE);
-            } catch (InterruptedException e) {
-                log.error("StackTrace: ", e);
-            }
+            s.start();
 
-        s.stop();
+        try {
+            Thread.sleep(Long.MAX_VALUE);
+        } catch (InterruptedException e) {
+            log.error("StackTrace: ", e);
+        }
+
+            s.stop();
 
         }
     }
