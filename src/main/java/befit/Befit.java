@@ -69,6 +69,7 @@ public class Befit {
 
     private void submitWorkout() throws Exception {
         driver.findElement(By.xpath("//*[@id=\"calendar-register-for-class\"]")).click();
+        Status.setSigned(true);
         log.info("Workout signed! :)");
     }
 

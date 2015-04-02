@@ -34,7 +34,7 @@ public class Tools {
         return Tools.getWorkoutDayOfWeekNumber() + 1;
     }
 
-    public static int getTdValue() throws NullPointerException, IOException {
+    public static int getTdValue() throws IllegalArgumentException, IOException {
         return Integer.parseInt(AppProperties.get(String.valueOf(Tools.getWorkoutDayOfWeekNumber())));
     }
 
@@ -48,5 +48,9 @@ public class Tools {
 
     public static String getPattern() throws Exception {
         return String.valueOf(AppProperties.get("pattern"));
+    }
+
+    public static String getPatternStatus() throws Exception {
+        return String.valueOf(AppProperties.get("patternStatusReset"));
     }
 }

@@ -5,8 +5,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.io.IOException;
-
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
@@ -41,8 +39,8 @@ public class AppPropertiesTest {
     }
 
     @Test
-    public void trowExceptionWhenKeyNotFound () throws Exception {
+    public void trowExceptionWhenNumericKeyNotFound () throws Exception {
         thrown.expect(IllegalArgumentException.class);
-        AppProperties.get("Key that not exist!");
+        AppProperties.get("9");
     }
 }

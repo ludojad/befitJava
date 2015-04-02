@@ -12,8 +12,6 @@ public class RunBefit {
         Befit befit = new Befit();
         try {
             befit.signToWorkout();
-        } catch (IllegalArgumentException e) {
-            log.warn("Nothing to sign today");
         } catch (NoSuchElementException e) {
             log.warn("Page element not found");
         } catch (Exception e) {

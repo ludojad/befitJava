@@ -13,7 +13,7 @@ public class AppProperties {
         Properties prop = new Properties();
         InputStream input = new FileInputStream("config.properties");
         prop.load(input);
-        if (prop.getProperty(key) == null) {
+        if (prop.getProperty(key) == null && key.matches("\\d")) {
             throw new IllegalArgumentException("Key [" + key + "] not found in properties file");
         }
         return prop.getProperty(key);
