@@ -24,8 +24,8 @@ public class Befit {
 
     public Befit() throws Exception {
 
-        TD=Tools.getTdValue();
         TR=Tools.getTrValue();
+        TD=Tools.getTdValue();
         LOGIN=Tools.getLogin();
         PASSWORD=Tools.getPassword();
 
@@ -35,10 +35,9 @@ public class Befit {
     }
 
     public void signToWorkout() throws Exception {
-        loginAndOpenCalendarPage();
+        loginAndOpenCalendarPageInListView();
         clickNextTabAfterTuesday();
-        //clickOnWorkout(TD, TR);
-        getLastWorkoutsInColumn("bodypump", 4).click();
+        getLastWorkoutsInColumn("bodypump", 3).click();
         if (isWorkoutStatusFree(getMessageFromEventContent())) {
                 submitWorkout();
             } else {
@@ -57,7 +56,7 @@ public class Befit {
         }
     }
 
-    private void loginAndOpenCalendarPage() throws NoSuchElementException {
+    private void loginAndOpenCalendarPageInListView() throws NoSuchElementException {
 
         driver.get("https://befit-cms.efitness.com.pl/kalendarz-zajec");
         driver.findElement(By.id("loginmenu_log_in")).click();
@@ -66,6 +65,8 @@ public class Befit {
         driver.findElement(By.id("Password")).clear();
         driver.findElement(By.id("Password")).sendKeys(PASSWORD);
         driver.findElement(By.id("SubmitCredentials")).click();
+        driver.findElement(By.xpath("//*[@id=\"innercontainer\"]/div/div[2]/section[2]/div[5]/a[3]")).click();
+
     }
 
     private void clickOnWorkout (int tr, int td) throws NoSuchElementException {
@@ -98,6 +99,7 @@ public class Befit {
         for (WebElement webElement: column) {
             if(webElement.getText().toLowerCase().replaceAll("\\s+","").contains(nameWorkout)){
                 workouts.add(webElement);
+                log.info(webElement.getText());
             }
         }
         return workouts.get(workouts.size()-1);

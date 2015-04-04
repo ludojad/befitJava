@@ -30,11 +30,11 @@ public class Tools {
         }
     }
 
-    public static int getTrValue() {
-        return Tools.getWorkoutDayOfWeekNumber() + 1;
+    public static int getTdValue() {
+        return Tools.getWorkoutDayOfWeekNumber();
     }
 
-    public static int getTdValue() throws IllegalArgumentException, IOException {
+    public static int getTrValue() throws IllegalArgumentException, IOException {
         return Integer.parseInt(AppProperties.get(String.valueOf(Tools.getWorkoutDayOfWeekNumber())));
     }
 
