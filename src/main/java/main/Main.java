@@ -18,21 +18,21 @@ public class Main {
 
         Scheduler scheduler = new Scheduler();
         Scheduler schedulerStatusReset = new Scheduler();
-
-        scheduler.schedule(Tools.getPattern(), new Runnable() {
-            public void run() {
-                try {
-                    if (!Status.isSigned()) {
-                        RunBefit.run();
-                    }
-                } catch (IllegalArgumentException e) {
-                    log.info("Nothing to sign today");
-                    Status.setSigned(true);
-                } catch (Exception e) {
-                    log.error("Unexpected: " + e);
-                }
-            }
-        });
+        RunBefit.run();
+//        scheduler.schedule(Tools.getPattern(), new Runnable() {
+//            public void run() {
+//                try {
+//                    if (!Status.isSigned()) {
+//                        RunBefit.run();
+//                    }
+//                } catch (IllegalArgumentException e) {
+//                    log.info("Nothing to sign today");
+//                    Status.setSigned(true);
+//                } catch (Exception e) {
+//                    log.error("Unexpected: " + e);
+//                }
+//            }
+//        });
 
         schedulerStatusReset.schedule(Tools.getPatternStatus(), new Runnable() {
             public void run() {

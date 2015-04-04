@@ -4,7 +4,11 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import tools.Tools;
 /**
@@ -33,12 +37,13 @@ public class Befit {
     public void signToWorkout() throws Exception {
         loginAndOpenCalendarPage();
         clickNextTabAfterTuesday();
-        clickOnWorkout(TD, TR);
-           if (isWorkoutStatusFree(getMessageFromEventContent())) {
-                submitWorkout();
-            } else {
-                log.info("Status: " + getMessageFromEventContent());
-            }
+        //clickOnWorkout(TD, TR);
+        findOnWorkoutInColumn("indoor", TR);
+           //if (isWorkoutStatusFree(getMessageFromEventContent())) {
+                //submitWorkout();
+            //} else {
+                //log.info("Status: " + getMessageFromEventContent());
+            //}
     }
 
     public void tearDown() throws Exception {
@@ -63,8 +68,8 @@ public class Befit {
         driver.findElement(By.id("SubmitCredentials")).click();
     }
 
-    private void clickOnWorkout (int td, int tr) throws NoSuchElementException {
-        driver.findElement(By.xpath("//*[@id=\"scheduler\"]/div[1]/table/tbody/tr[" + td + "]/td[" + tr + "]/div/p[2]")).click();
+    private void clickOnWorkout (int tr, int td) throws NoSuchElementException {
+        driver.findElement(By.xpath("//*[@id=\"scheduler\"]/div[1]/table/tbody/tr[" + tr + "]/td[" + td + "]/div/p[2]")).click();
     }
 
     private void submitWorkout() throws Exception {
@@ -86,4 +91,13 @@ public class Befit {
         return message.substring(message.lastIndexOf("\n")).replace("\n", "");
     }
 
+    public WebElement findOnWorkoutInColumn(String nameWorkout, int td) {
+        List <WebElement> column = driver.findElements(By.xpath("//*[@id=\"scheduler\"]/div[1]/table/tbody/tr/td["+td+"]/div/p[1]"));
+        for (WebElement webElement: column) {
+            if(webElement.getText().trim().toLowerCase().replaceAll("\\s","").contains(nameWorkout)){
+                log.info(webElement.getText());
+            }
+        }
+        return column.get(0);
+    }
 }
