@@ -38,12 +38,12 @@ public class Befit {
         loginAndOpenCalendarPage();
         clickNextTabAfterTuesday();
         //clickOnWorkout(TD, TR);
-        findOnWorkoutInColumn("indoor", TR);
-           //if (isWorkoutStatusFree(getMessageFromEventContent())) {
-                //submitWorkout();
-            //} else {
-                //log.info("Status: " + getMessageFromEventContent());
-            //}
+        getLastWorkoutsInColumn("bodypump", 4).click();
+        if (isWorkoutStatusFree(getMessageFromEventContent())) {
+                submitWorkout();
+            } else {
+                log.info("Status: " + getMessageFromEventContent());
+            }
     }
 
     public void tearDown() throws Exception {
@@ -91,13 +91,15 @@ public class Befit {
         return message.substring(message.lastIndexOf("\n")).replace("\n", "");
     }
 
-    public WebElement findOnWorkoutInColumn(String nameWorkout, int td) {
-        List <WebElement> column = driver.findElements(By.xpath("//*[@id=\"scheduler\"]/div[1]/table/tbody/tr/td["+td+"]/div/p[1]"));
+    public WebElement getLastWorkoutsInColumn(String nameWorkout, int td) {
+        List <WebElement> column = driver.findElements(By.xpath("//*[@id=\"scheduler\"]/div[1]/table/tbody/tr/td["+td+"]/div"));
+        List <WebElement> workouts = new ArrayList<WebElement>();
+        log.warn(column.size());
         for (WebElement webElement: column) {
-            if(webElement.getText().trim().toLowerCase().replaceAll("\\s","").contains(nameWorkout)){
-                log.info(webElement.getText());
+            if(webElement.getText().toLowerCase().replaceAll("\\s+","").contains(nameWorkout)){
+                workouts.add(webElement);
             }
         }
-        return column.get(0);
+        return workouts.get(workouts.size()-1);
     }
 }
