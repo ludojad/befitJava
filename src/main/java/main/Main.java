@@ -18,7 +18,7 @@ public class Main {
 
         Scheduler scheduler = new Scheduler();
         Scheduler schedulerStatusReset = new Scheduler();
-        RunBefit.run();
+
         scheduler.schedule(Tools.getPattern(), new Runnable() {
             public void run() {
                 try {

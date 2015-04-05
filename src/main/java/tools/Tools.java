@@ -32,7 +32,7 @@ public class Tools {
         return Tools.getWorkoutDayOfWeekNumber();
     }
 
-    public static String getWorkoutData() throws IOException {
+    public static String getWorkoutData() throws IllegalArgumentException, IOException {
         return AppProperties.get(String.valueOf(Tools.getWorkoutDayOfWeekNumber()));
     }
 
