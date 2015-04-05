@@ -1,13 +1,11 @@
 package tools;
 
-import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.util.Calendar;
 /**
  * Created by Przemo on 2015-02-28.
  */
 public class Tools {
-    final static Logger log = Logger.getLogger(tools.Tools.class);
     // pon = 1; wt = 2; ...; sun = 7;
     public static int getNowDayOfWeekNumber() {
         int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
@@ -30,12 +28,12 @@ public class Tools {
         }
     }
 
-    public static int getTrValue() {
-        return Tools.getWorkoutDayOfWeekNumber() + 1;
+    public static int getTdValue() {
+        return Tools.getWorkoutDayOfWeekNumber();
     }
 
-    public static int getTdValue() throws IllegalArgumentException, IOException {
-        return Integer.parseInt(AppProperties.get(String.valueOf(Tools.getWorkoutDayOfWeekNumber())));
+    public static String getWorkoutData() throws IllegalArgumentException, IOException {
+        return AppProperties.get(String.valueOf(Tools.getWorkoutDayOfWeekNumber()));
     }
 
     public static String getLogin() throws Exception {

@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>webdriver</groupId>
-    <artifactId>webdriver</artifactId>
-    <version>1.1</version>
+    <artifactId>befit</artifactId>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <properties>

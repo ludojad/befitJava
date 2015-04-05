@@ -13,7 +13,7 @@ public class RunBefit {
         try {
             befit.signToWorkout();
         } catch (NoSuchElementException e) {
-            log.warn("Page element not found");
+            log.warn("Page element not found\n");
         } catch (Exception e) {
             log.error("Exception: ", e);
         } finally {
