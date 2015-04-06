@@ -36,7 +36,7 @@ public class Befit {
     public void signToWorkout() throws Exception {
         loginAndOpenCalendarPageInListView();
         clickNextTabAfterTuesday();
-        getWorkoutContainsData(WORKOUT, 3).click();
+        getWorkoutContainsData(WORKOUT, TD).click();
         if (isWorkoutStatusFree(getMessageFromEventContent())) {
                 submitWorkout();
             } else {
