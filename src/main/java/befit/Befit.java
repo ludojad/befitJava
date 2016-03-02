@@ -101,6 +101,11 @@ public class Befit {
                 log.info(webElement.getText());
             }
         }
-        return workouts.get(workouts.size()-1);
+
+        WebElement workout = null;
+        if (workouts.size() !=0 && !workouts.isEmpty()) {
+            workout = workouts.get(workouts.size() - 1);
+        }
+        return workout;
     }
 }
